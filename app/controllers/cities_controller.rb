@@ -30,20 +30,20 @@ class CitiesController < ApplicationController
     @message = ""
     @city = City.new(city_params)
     @cities = City.all 
-    correct = check_answer(@city.name)
-    is_dup = check_for_dup(@city.name, @cities)
+    @correct = check_answer(@city.name)
+    @is_dup = check_for_dup(@city.name, @cities)
 
-    if correct == false
+    if @correct == false
       @message = "That is not a city TTS is in."
-    elsif is_dup == true
+    elsif @is_dup == true
       @message = "You already guessed that one!"
     end 
 
     respond_to do |format|
-      if @cities.count <= 2 && correct == true && is_dup == false && @city.save
+      if @cities.count <= 2 && @correct == true && @is_dup == false && @city.save
         format.html { redirect_to new_city_path, notice: 'City is correct!' }
         format.json { render :show, status: :created, location: @city }
-      elsif @cities.count == 3 && correct == true && is_dup == false && @city.save
+      elsif @cities.count == 3 && @correct == true && @is_dup == false && @city.save
         format.html { redirect_to youwon_path, notice: 'City is correct!' }
         format.json { render action: 'show', status: :created, location: @city }
       else
