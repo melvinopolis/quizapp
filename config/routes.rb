@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
   get "cities/youwon" => "cities#youwon", as: :youwon
+
+  get 'states/youwin' => 'states#youwin', as: :youwin
   
   resources :cities
+  resources :states
 
 end
 

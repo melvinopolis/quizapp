@@ -1,0 +1,19 @@
+<!--
+
+User will reach this page if they name all states correctly
+
+-->
+
+<h1>You did it!</h1>
+
+<h3>You named all the states!</h3>
+
+<p>Here they are:</p>
+
+<div>
+	<% @states.each do |state| %>
+
+	<%= "#{state.id}. #{state.name}" %><br />
+
+	<% end %>
+</div>
